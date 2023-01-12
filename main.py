@@ -8,8 +8,8 @@ class MotsCroises(object):
     def __init__(self, dim, words):
         self.dim = dim
         self.words = words
-        self.init_words = 11
-        self.limit = 35
+        self.init_words = 5
+        self.limit = 29
         self.mat = [[0 for _ in range(self.dim[1])] for _ in range(self.dim[0])]
         self.words_pos_h = []
         self.words_pos_v = []
@@ -60,7 +60,7 @@ class MotsCroises(object):
         for word in self.words[self.init_words:self.limit]:
             # If 1 then write the word horizontally, if 0 write it vertically
             no_loop = False
-            for _ in range(5):
+            for _ in range(4):
                 for i in range(self.dim[0]):
                     for j in range(self.dim[1]):
                         if not no_loop:
@@ -174,9 +174,7 @@ def initiliaze_game(list_mots=None):
     mots = MotsCroises(dim, list_mots)
     mots.first_words()
     mots.insert_words()
+    mots.print_table()
     return mots
 
-    # board = mots.mat
-# print(mots.words_pos_v, mots.words_pos_h)
-# mots.complete_words()
-# mots.print_table()
+# initiliaze_game()

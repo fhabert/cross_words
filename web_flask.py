@@ -28,7 +28,7 @@ def generate():
         data = json.loads(request.data.decode('utf-8'))
         list_mots = list(zip(data["mots"], data["defs"]))
         mots = main.initiliaze_game(list_mots)
-        # return redirect('/')
+        print(mots.mat)
         return render_template("base.html", board=mots.mat, rows_count=len(mots.mat), cols_count=len(mots.mat[0]),
                                 pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, def_h=mots.def_h,
                                 len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
