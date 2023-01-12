@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link href="../static/base.css" rel="stylesheet" type="text/css" media="screen">
+    </header>
+
+    <body>
+        <h1 class="title-page"> Mots croisés </h1>
+        <div class="center_button"> 
+            <form action="/redo" method="POST" enctype="multipart/form-data">
+                <button type="submit" class="btn btn-change"> Change </button>
+            </form>
+        </div>
+        <!-- <h3 class="sub-title">Réalisé exclusivement pour ecologie360</h3> -->
+        <div class="mots_croises">
+            <div class="board mx-2">
+                {% for i in range(rows_count) %}
+                    <div class="line_squares">
+                        {% for j in range(cols_count) %}
+                            {% if board[i][j] != 0 %}
+                                <div id='square_{{(i, j)}}' class="squares">
+                                    {% for item in pos_h %}
+                                        {% if [i, j] == item[0] %}
+                                            <b class="counter_word">{{item[1]}}</b>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% for item in pos_v %}
+                                        {% if [i, j] == item[0] %}
+                                            <b class="counter_word">{{item[1]}}</b>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p class="mot_color">{{board[i][j]}}</p>
+                                </div>
+                            {% else %}
+                                <div id='square_{{(i, j)}}'  class="squares_empty">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="def_mots">
+            <div class="container_def">
+                <h3>Mots Verticaux: </h3>
+                {% for i in range(len_def_v) %}
+                    <p>{{i+1}} : {{def_v[i]}}</p>
+                {% endfor %}
+            </div>
+            <div class="container_def">
+                <h3>Mots Horizontaux: </h3>
+                {% for i in range(len_def_h) %}
+                    <p>{{i+1}} : {{def_h[i]}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+
+</html>

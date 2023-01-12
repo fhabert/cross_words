@@ -1,0 +1,18 @@
+.groupe-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.inner-inputs {
+    display: flex;
+    flex-direction: row;
+}
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.small-titles {
+    font-size: 22px;
+    color: rgb(36, 36, 130);
+}
