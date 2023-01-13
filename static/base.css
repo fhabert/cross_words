@@ -29,7 +29,7 @@
     margin-top: 40px;
     /* border: 1px solid black; */
     width:1000px;
-    height: 800px;
+    height: 1000px;
 }
 
 .line_squares {
@@ -58,6 +58,7 @@
 .center_button {
     display:flex;
     justify-content:center;
+    align-items: center;
 }
 .btn-change {
     border: 1px solid transparent;

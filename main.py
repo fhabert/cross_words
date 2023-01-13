@@ -60,12 +60,15 @@ class MotsCroises(object):
         for word in self.words[self.init_words:self.limit]:
             # If 1 then write the word horizontally, if 0 write it vertically
             no_loop = False
-            for _ in range(4):
+            for _ in range(2):
                 for i in range(self.dim[0]):
                     for j in range(self.dim[1]):
                         if not no_loop:
                             pos = [i, j]
-                            dir = random.randint(0,1)
+                            if i % 2 == 0:
+                                dir = 0
+                            else:
+                                dir = 1
                             no_loop = self.check_validity(word[0], dir, pos)
 
             if no_loop:
@@ -169,12 +172,15 @@ def initiliaze_game(list_mots=None):
         list_mots = text.main_text
     random.shuffle(list_mots)
     min_size = find_size(list_mots)
-    threshold_rows, theshold_col = 3, 3
+    print(min_size)
+    threshold_rows, theshold_col = 5, 5
     dim = (min_size+threshold_rows, min_size+theshold_col)
     mots = MotsCroises(dim, list_mots)
     mots.first_words()
+    print(mots.mat)
     mots.insert_words()
-    mots.print_table()
+    print(mots.mat)
+    # mots.print_table()
     return mots
 
 # initiliaze_game()

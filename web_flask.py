@@ -14,7 +14,6 @@ def home():
                                 pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, 
                                 def_h=mots.def_h, len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
 
-
 @app.route('/redo', methods=['POST'])
 def redo():
     mots = main.initiliaze_game()
@@ -25,13 +24,15 @@ def redo():
 @app.route('/generate', methods=['GET', 'POST'])
 def generate():
     if request.method == "POST":
-        data = json.loads(request.data.decode('utf-8'))
+        target = request.form.get('all-data')
+        data = json.loads(target)
         list_mots = list(zip(data["mots"], data["defs"]))
+        print(list_mots)
         mots = main.initiliaze_game(list_mots)
         print(mots.mat)
         return render_template("base.html", board=mots.mat, rows_count=len(mots.mat), cols_count=len(mots.mat[0]),
-                                pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, def_h=mots.def_h,
-                                len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
+                            pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, def_h=mots.def_h,
+                            len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
     elif request.method == "GET":
         return render_template("generate.html")
 
