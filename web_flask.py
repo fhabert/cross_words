@@ -9,14 +9,15 @@ app.secret_key = "PaRiS"
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    mots = main.initiliaze_game()
+    mots, l_mots = main.initiliaze_game()
     return render_template("base.html", board=mots.mat, rows_count=len(mots.mat), cols_count=len(mots.mat[0]), 
                                 pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, 
                                 def_h=mots.def_h, len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
 
 @app.route('/redo', methods=['POST'])
 def redo():
-    mots = main.initiliaze_game()
+    mots, l_m = main.initiliaze_game()
+    print(mots.word_put)
     return render_template("base.html", board=mots.mat, rows_count=len(mots.mat), cols_count=len(mots.mat[0]),
                             pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, def_h=mots.def_h,
                             len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))
@@ -27,9 +28,7 @@ def generate():
         target = request.form.get('all-data')
         data = json.loads(target)
         list_mots = list(zip(data["mots"], data["defs"]))
-        print(list_mots)
-        mots = main.initiliaze_game(list_mots)
-        print(mots.mat)
+        mots, l_m = main.initiliaze_game(list_mots)
         return render_template("base.html", board=mots.mat, rows_count=len(mots.mat), cols_count=len(mots.mat[0]),
                             pos_h=mots.words_pos_h, pos_v=mots.words_pos_v, def_v=mots.def_v, def_h=mots.def_h,
                             len_def_h=len(mots.def_h), len_def_v=len(mots.def_v))

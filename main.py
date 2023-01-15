@@ -8,7 +8,7 @@ class MotsCroises(object):
     def __init__(self, dim, words):
         self.dim = dim
         self.words = words
-        self.init_words = 5
+        self.init_words = 7
         self.limit = 29
         self.mat = [[0 for _ in range(self.dim[1])] for _ in range(self.dim[0])]
         self.words_pos_h = []
@@ -17,6 +17,7 @@ class MotsCroises(object):
         self.def_v = []
         self.count_h = 0
         self.count_v = 0
+        self.word_put = 0
         pass
     
     def print_table(self):
@@ -72,6 +73,7 @@ class MotsCroises(object):
                             no_loop = self.check_validity(word[0], dir, pos)
 
             if no_loop:
+                self.word_put += 1
                 if dir:
                     count = 0
                     for letter in word[0]:
@@ -172,15 +174,12 @@ def initiliaze_game(list_mots=None):
         list_mots = text.main_text
     random.shuffle(list_mots)
     min_size = find_size(list_mots)
-    print(min_size)
-    threshold_rows, theshold_col = 5, 5
+    threshold_rows, theshold_col = 8, 8
     dim = (min_size+threshold_rows, min_size+theshold_col)
     mots = MotsCroises(dim, list_mots)
     mots.first_words()
-    print(mots.mat)
     mots.insert_words()
-    print(mots.mat)
     # mots.print_table()
-    return mots
+    return mots, list_mots
 
 # initiliaze_game()

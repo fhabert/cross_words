@@ -26,7 +26,8 @@
     font-weight: 600;
 }
 .board {
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 40px;
     /* border: 1px solid black; */
     width:1000px;
     height: 1000px;
